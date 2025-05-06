@@ -220,13 +220,13 @@ class VehicleModel(Node):
 
         # Marker things
         self.marker = Marker()
-        self.marker.header.frame_id = "arrow_marker"
+        self.marker.header.frame_id = "world"
         self.marker.header.stamp = self.get_clock().now().to_msg()
         self.marker.ns = "arrow_namespace"
         self.marker.id = 0
         self.marker.type = Marker.ARROW
         self.marker.action = Marker.ADD
-        self.marker.scale.x = 1.0  # Arrow length
+        self.marker.scale.x = 0.5  # Arrow length
         self.marker.scale.y = 0.1  # Arrow width
         self.marker.scale.z = 0.1  # Arrow height
         # Color (RGBA)
@@ -284,14 +284,14 @@ class VehicleModel(Node):
         message.orientation.w = cos(new_state.yaw/2)
 
 
-        msg_dummy = Pose()
-        msg_dummy.orientation.x = 0.0
-        msg_dummy.orientation.y = 0.0
-        msg_dummy.orientation.z = 0.0
-        msg_dummy.orientation.w = 0.0
-        msg_dummy.position.x = 10.0
-        msg_dummy.position.y = 10.0
-        msg_dummy.position.z = 10.0
+        # msg_dummy = Pose()
+        # msg_dummy.orientation.x = 0.0
+        # msg_dummy.orientation.y = 0.0
+        # msg_dummy.orientation.z = 0.0
+        # msg_dummy.orientation.w = 0.0
+        # msg_dummy.position.x = 10.0
+        # msg_dummy.position.y = 10.0
+        # msg_dummy.position.z = 10.0
         # self.bicycle_publisher.publish(msg_dummy)
         self.bicycle_publisher.publish(message)
         self.publisher.publish(self.marker)
